@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: blog-pojo
+Implementation-Version: 1.0.0
+Built-By: admin
+Implementation-Vendor-Id: com.yarm
+Build-Jdk: 1.8.0_121
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/blog-parent/blog-pojo
+Created-By: Maven Integration for Eclipse
+
