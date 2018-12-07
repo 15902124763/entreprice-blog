@@ -31,3 +31,37 @@ $(function(){
 	   }
 	  });
 });
+
+function submitBlog(){
+	var title = $.trim($("#blogTiletId").val());
+	var content = $.trim($("#blogContentId").val());
+	if(title=="" || title == '' || title == null){
+		$("#blogTiletAlertId").text("标题内容不能为空！");
+		$("#blogTiletAlertId").show();
+		return;
+	}
+	$("#blogTiletAlertId").text("");
+	$("#blogTiletAlertId").hide();
+	if(content=="" || content == '' || content == null){
+		$("#blogContentAlertId").text("正文内容不能为空！");
+		$("#blogContentAlertId").show();
+		return;
+	}
+	$("#blogContentAlertId").text("");
+	$("#blogContentAlertId").hide();
+	
+	var blog = {"title":title,"content":content};
+	$.ajax({
+	    type:"POST",                      
+	    url:host + "blog/submit.html",           
+	    data:JSON.stringify(blog),   
+	    dataType:"json", 
+	    contentType:"application/json;charset=utf-8",
+	    success:function(data){
+	    	
+	    },
+	    error:function(data){
+	    	
+	    }
+	});
+}

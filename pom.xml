@@ -19,6 +19,8 @@
   	<module>blog-service</module>
   	<module>blog-common</module>
   	<module>blog-pojo</module>
+  	<module>blog-dao</module>
+  	<module>blog-login</module>
   </modules>
   
   <dependencies>
@@ -32,5 +34,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>  
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		</dependency>
   </dependencies>
 </project>
