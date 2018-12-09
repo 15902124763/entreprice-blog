@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yarm.blog.dao.mapper.BlogMapper">
+
+<resultMap type="com.yarm.blog.pojo.mapper.BlogMapperPojo" id="tBlogResultMap">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+</resultMap>
+
+<insert id="insert" parameterType="com.yarm.blog.pojo.mapper.BlogMapperPojo">
+INSERT INTO t_blog(uid,title,content,create_date,update_date) 
+VALUES(#{blogMapperPojo.uid},#{blogMapperPojo.title},#{blogMapperPojo.content},#{blogMapperPojo.createDate},#{blogMapperPojo.updateDate})
+</insert>
+<select id="selectBlogList" resultMap="tBlogResultMap">
+SELECT b.uid,b.title,b.content FROM t_blog b ORDER BY create_date
+</select>
+</mapper>

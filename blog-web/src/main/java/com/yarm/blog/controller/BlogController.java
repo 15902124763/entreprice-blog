@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.yarm.blog.pojo.mapper.BlogMapperPojo;
 import com.yarm.blog.pojo.web.AjaxResult;
 import com.yarm.blog.pojo.web.Blog;
+import com.yarm.blog.pojo.web.Page;
 import com.yarm.blog.service.BlogService;
 
 @Controller
@@ -43,4 +45,19 @@ public class BlogController {
 		return ar;
 	}
 	
+	@RequestMapping(value="blogList.html", method=RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult<PageInfo<BlogMapperPojo>>  blogList(@RequestBody Page p){
+		AjaxResult<PageInfo<BlogMapperPojo>> ar = new AjaxResult<PageInfo<BlogMapperPojo>>();
+		if(p.getPageNum() == 0){
+			p.setPageNum(1);
+		}
+		if(p.getPageSize() == 0){
+			p.setPageSize(10);
+		}
+		PageInfo<BlogMapperPojo> blogList = this.blogService.
+				blogList(p.getPageNum(), p.getPageSize());
+		ar.setResult(blogList);
+		return ar;
+	}
 }
