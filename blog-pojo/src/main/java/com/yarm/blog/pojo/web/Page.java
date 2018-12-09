@@ -2,23 +2,23 @@ package com.yarm.blog.pojo.web;
 
 public class Page {
 	
-	private Integer pageNum;
+	private int pageNum;
 	
-	private Integer pageSize;
+	private int pageSize;
 
-	public Integer getPageNum() {
+	public int getPageNum() {
 		return pageNum;
 	}
 
-	public void setPageNum(Integer pageNum) {
+	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
 	}
 
-	public Integer getPageSize() {
+	public int getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(Integer pageSize) {
+	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 	

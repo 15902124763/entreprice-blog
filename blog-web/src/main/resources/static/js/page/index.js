@@ -65,3 +65,49 @@ function submitBlog(){
 	    }
 	});
 }
+var pageSize=10;
+var pageNum=1;
+var falg = true;
+$(function(){
+	$("#main").scroll(function(){
+		//滚动条位置
+		var scrollTop = $("#main").scrollTop();
+		//可视窗口的高度
+		var viewportHeight = $("#main").height();
+		//整个页面可以滚动的高度
+		var scrollHeight = $("#main")[0].scrollHeight;
+		if(scrollTop+viewportHeight==scrollHeight && falg){
+		    $.ajax({
+		        type:'get',
+		        url:host + "blog/blogList.html?pageNum="+pageNum+"&pageSize="+pageSize,
+		        cache:false,
+		        dataType:'json',
+		        success:function(data){
+		        	if(data.success){
+		        		var html = "";
+		        		var list = data.result.list;
+		        		if(list.length==0){
+		        			falg = false;
+		        		}else{
+		        			true;
+		        		}
+		        		$.each(list,function(key,val){
+		        			console.log(key,val,this);
+		        			html +="<div><h2>"
+		        				+val.title
+		        				+"</h2>"
+		        				+"<div>"
+		        				+val.content
+		        				+"</div>"
+		        				+"</div>";
+		        			});
+		        		$("#contentId").append(html);
+		        		pageSize+=10;
+		        		pageNum+=1;
+		        	}
+		        }
+		    });
+		}
+	});
+});
+

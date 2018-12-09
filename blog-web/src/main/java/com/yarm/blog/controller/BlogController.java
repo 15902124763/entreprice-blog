@@ -45,9 +45,9 @@ public class BlogController {
 		return ar;
 	}
 	
-	@RequestMapping(value="blogList.html", method=RequestMethod.POST)
+	@RequestMapping(value="blogList.html", method=RequestMethod.GET)
 	@ResponseBody
-	public AjaxResult<PageInfo<BlogMapperPojo>>  blogList(@RequestBody Page p){
+	public AjaxResult<PageInfo<BlogMapperPojo>>  blogList(Page p){
 		AjaxResult<PageInfo<BlogMapperPojo>> ar = new AjaxResult<PageInfo<BlogMapperPojo>>();
 		if(p.getPageNum() == 0){
 			p.setPageNum(1);
