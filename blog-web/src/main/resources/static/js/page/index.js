@@ -67,7 +67,6 @@ function submitBlog(){
 }
 var pageSize=10;
 var pageNum=1;
-var falg = true;
 $(function(){
 	$("#main").scroll(function(){
 		//滚动条位置
@@ -76,7 +75,7 @@ $(function(){
 		var viewportHeight = $("#main").height();
 		//整个页面可以滚动的高度
 		var scrollHeight = $("#main")[0].scrollHeight;
-		if(scrollTop+viewportHeight==scrollHeight && falg){
+		if(scrollTop+viewportHeight==scrollHeight){
 		    $.ajax({
 		        type:'get',
 		        url:host + "blog/blogList.html?pageNum="+pageNum+"&pageSize="+pageSize,
@@ -86,20 +85,23 @@ $(function(){
 		        	if(data.success){
 		        		var html = "";
 		        		var list = data.result.list;
-		        		if(list.length==0){
-		        			falg = false;
-		        		}else{
-		        			true;
-		        		}
 		        		$.each(list,function(key,val){
 		        			console.log(key,val,this);
-		        			html +="<div><h2>"
+		        			html +="<div><h2><a class='blog-page-title'>"
 		        				+val.title
-		        				+"</h2>"
-		        				+"<div>"
+		        				+"</a></h2>"
+		        				+"<div class='blog-page-content'>"
 		        				+val.content
 		        				+"</div>"
-		        				+"</div>";
+		        				+"</div>"
+								+"<div>"
+								+"<button class='blog-agree'>"
+								+"赞同"
+								+"</button>"
+								+"<button class='blog-agree'>"
+								+"评论"
+								+"</button>"
+								+"</div>";
 		        			});
 		        		$("#contentId").append(html);
 		        		pageSize+=10;

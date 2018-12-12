@@ -67,7 +67,7 @@ header {
     font-synthesis: style;
 }
 .content{
-	margin-left: 9%;
+	margin-left: 13%;
 }
 .Ul-write{
 	margin-left: 68%;
@@ -157,4 +157,22 @@ header {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+.blog-page-title{
+    color: inherit;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+.blog-page-content{
+    font-size: 15px;
+    color: #1a1a1a;
+    background: #f6f6f6;
+    -webkit-tap-highlight-color: rgba(26,26,26,0);
+}
+.blog-agree{
+    margin-right: 20px;
+    color: #0084ff;
+    background: rgba(0,132,255,.1);
+    border-color: transparent;
 }
