@@ -46,6 +46,12 @@ public class BlogServiceImpl implements BlogService {
         bap.setBlogId(blogId);
         bap.setUid(uid);
         int i = this.blogAgreeWithMapper.insert(bap);
+        //统计博客评论
+        BlogMapperPojo blogMapperPojo = this.blogMapper.selectBlogById(blogId);
+        BlogMapperPojo bmp = new BlogMapperPojo();
+        bmp.setId(blogId);
+        bmp.setAgreeCount(blogMapperPojo.getAgreeCount() + 1);
+        int j = this.blogMapper.update(bmp);
         return i;
     }
 }

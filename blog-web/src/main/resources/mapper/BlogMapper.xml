@@ -2,18 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yarm.blog.dao.mapper.BlogMapper">
 
-<resultMap type="com.yarm.blog.pojo.mapper.BlogMapperPojo" id="tBlogResultMap">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="uid" jdbcType="VARCHAR" property="uid" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-</resultMap>
+    <resultMap type="com.yarm.blog.pojo.mapper.BlogMapperPojo" id="tBlogResultMap">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="uid" jdbcType="VARCHAR" property="uid" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="agree_count" jdbcType="INTEGER" property="agreeCount" />
+        <result column="create_date" jdbcType="DATE" property="createDate" />
+        <result column="update_date" jdbcType="DATE" property="updateDate" />
+    </resultMap>
 
-<insert id="insert" parameterType="com.yarm.blog.pojo.mapper.BlogMapperPojo">
-INSERT INTO t_blog(uid,title,content,create_date,update_date) 
-VALUES(#{blogMapperPojo.uid},#{blogMapperPojo.title},#{blogMapperPojo.content},#{blogMapperPojo.createDate},#{blogMapperPojo.updateDate})
-</insert>
-<select id="selectBlogList" resultMap="tBlogResultMap">
-SELECT b.id,b.uid,b.title,b.content FROM t_blog b ORDER BY create_date
-</select>
+    <insert id="insert" parameterType="com.yarm.blog.pojo.mapper.BlogMapperPojo">
+    INSERT INTO t_blog(uid,title,content,create_date,update_date)
+    VALUES(#{blogMapperPojo.uid},#{blogMapperPojo.title},#{blogMapperPojo.content},#{blogMapperPojo.createDate},#{blogMapperPojo.updateDate})
+    </insert>
+    <select id="selectBlogList" resultMap="tBlogResultMap">
+    SELECT b.id,b.uid,b.title,b.content,b.agree_count, b.create_date,b.update_date FROM t_blog b ORDER BY create_date desc
+    </select>
+
+    <update id="update" parameterType="com.yarm.blog.pojo.mapper.BlogMapperPojo">
+        update t_blog
+        <set>
+            <if test="blogMapperPojo.uid != null">uid=#{blogMapperPojo.uid},</if>
+            <if test="blogMapperPojo.title != null">title=#{blogMapperPojo.title},</if>
+            <if test="blogMapperPojo.content != null">content=#{blogMapperPojo.content},</if>
+            <if test="blogMapperPojo.agreeCount != null">agree_count=#{blogMapperPojo.agreeCount},</if>
+            <if test="blogMapperPojo.createDate != null">create_date=#{blogMapperPojo.createDate},</if>
+            <if test="blogMapperPojo.updateDate != null">update_date=#{blogMapperPojo.updateDate}</if>
+        </set>
+        where id=#{blogMapperPojo.id}
+    </update>
+
+    <select id="selectBlogById" resultMap="tBlogResultMap" parameterType="java.lang.Long">
+        select id,uid,title,content,agree_count,create_date,update_date from t_blog where id = #{id}
+    </select>
 </mapper>

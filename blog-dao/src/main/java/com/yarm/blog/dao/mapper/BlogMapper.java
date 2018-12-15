@@ -30,4 +30,17 @@ public interface BlogMapper {
 	 */
 	List<BlogMapperPojo> selectBlogList();
 
+	/**
+	 * 更新
+	 * @param bmp
+	 * @return
+	 */
+	int update(@Param("blogMapperPojo") BlogMapperPojo bmp);
+
+	/**
+	 * 查询一条博客
+	 * @param blogId
+	 * @return
+	 */
+	BlogMapperPojo selectBlogById(@Param("id") Long blogId);
 }

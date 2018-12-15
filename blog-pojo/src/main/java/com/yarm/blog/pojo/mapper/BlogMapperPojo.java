@@ -13,8 +13,18 @@ public class BlogMapperPojo {
 	private String content;
 	
 	private Date createDate;
-	
+
 	private Date updateDate;
+
+	private int agreeCount;
+
+	public void setAgreeCount(int agreeCount) {
+		this.agreeCount = agreeCount;
+	}
+
+	public int getAgreeCount() {
+		return agreeCount;
+	}
 
 	public long getId() {
 		return id;

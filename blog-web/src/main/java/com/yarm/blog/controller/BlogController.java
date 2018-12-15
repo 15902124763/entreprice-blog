@@ -41,7 +41,7 @@ public class BlogController {
 			return ar;
 		}
 		BlogMapperPojo bm = new BlogMapperPojo();
-		bm.setTitle(b.getContent());
+		bm.setTitle(b.getTitle());
 		bm.setContent(b.getContent());
 		this.blogService.insertBlog(bm);
 		return ar;

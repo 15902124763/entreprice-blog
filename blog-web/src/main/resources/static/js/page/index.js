@@ -58,8 +58,16 @@ function submitBlog(){
 	    dataType:"json", 
 	    contentType:"application/json;charset=utf-8",
 	    success:function(data){
-	    	
-	    },
+            $("#blogTiletId").val("");
+            $("#blogContentId").val("");
+	    	$("#writeModal").modal('hide');
+            $('#writeBlogSuccessId').modal('show');
+            setTimeout(function(){
+                $("#writeBlogSuccessId").modal("hide")
+            },1200);
+            $("#contentId").children().remove();
+            homePage();
+        },
 	    error:function(data){
 	    	
 	    }
@@ -90,7 +98,7 @@ function getDataDefault(){
                         +"</div>"
                         +"<div>"
                         +"<button class='blog-agree' onclick='agreeWith("+val.id+")'>"
-                        +"赞同"
+                        +"赞同&nbsp;" + val.agreeCount
                         +"</button>"
                         +"<button class='blog-agree' onclick='commentPoint("+val.id+")'>"
                         +"评论"
@@ -98,7 +106,6 @@ function getDataDefault(){
                         +"</div>";
                 });
                 $("#contentId").append(html);
-                pageSize+=10;
                 pageNum+=1;
             }
         }
@@ -139,7 +146,12 @@ function agreeWith(obj) {
         dataType:"json",
         contentType:"application/json;charset=utf-8",
         success:function(data){
-
+            $('#agreeResultModelId').modal('show');
+            setTimeout(function(){
+                $("#agreeResultModelId").modal("hide")
+            },1200);
+            $("#contentId").children().remove();
+            homePage();
         },
         error:function(data){
 
