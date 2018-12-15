@@ -65,8 +65,46 @@ function submitBlog(){
 	    }
 	});
 }
+
+//获取分页默认数据
 var pageSize=10;
 var pageNum=1;
+function getDataDefault(){
+    $.ajax({
+        type:'get',
+        url:host + "blog/blogList.html?pageNum="+pageNum+"&pageSize="+pageSize,
+        cache:false,
+        dataType:'json',
+        success:function(data){
+            if(data.success){
+                var html = "";
+                var list = data.result.list;
+                $.each(list,function(key,val){
+                    console.log(key,val,this);
+                    html +="<div><h2><a class='blog-page-title'>"
+                        +val.title
+                        +"</a></h2>"
+                        +"<div class='blog-page-content'>"
+                        +val.content
+                        +"</div>"
+                        +"</div>"
+                        +"<div>"
+                        +"<button class='blog-agree'>"
+                        +"赞同"
+                        +"</button>"
+                        +"<button class='blog-agree'>"
+                        +"评论"
+                        +"</button>"
+                        +"</div>";
+                });
+                $("#contentId").append(html);
+                pageSize+=10;
+                pageNum+=1;
+            }
+        }
+    });
+}
+
 $(function(){
 	$("#main").scroll(function(){
 		//滚动条位置
@@ -76,40 +114,11 @@ $(function(){
 		//整个页面可以滚动的高度
 		var scrollHeight = $("#main")[0].scrollHeight;
 		if(scrollTop+viewportHeight==scrollHeight){
-		    $.ajax({
-		        type:'get',
-		        url:host + "blog/blogList.html?pageNum="+pageNum+"&pageSize="+pageSize,
-		        cache:false,
-		        dataType:'json',
-		        success:function(data){
-		        	if(data.success){
-		        		var html = "";
-		        		var list = data.result.list;
-		        		$.each(list,function(key,val){
-		        			console.log(key,val,this);
-		        			html +="<div><h2><a class='blog-page-title'>"
-		        				+val.title
-		        				+"</a></h2>"
-		        				+"<div class='blog-page-content'>"
-		        				+val.content
-		        				+"</div>"
-		        				+"</div>"
-								+"<div>"
-								+"<button class='blog-agree'>"
-								+"赞同"
-								+"</button>"
-								+"<button class='blog-agree'>"
-								+"评论"
-								+"</button>"
-								+"</div>";
-		        			});
-		        		$("#contentId").append(html);
-		        		pageSize+=10;
-		        		pageNum+=1;
-		        	}
-		        }
-		    });
+            getDataDefault();
 		}
 	});
 });
 
+$(function () {
+	getDataDefault();
+});
