@@ -3,6 +3,8 @@ package com.yarm.blog.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.yarm.blog.dao.mapper.BlogAgreeWithMapper;
+import com.yarm.blog.pojo.mapper.BlogAgreeWithPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class BlogServiceImpl implements BlogService {
 
 	@Autowired
 	private BlogMapper blogMapper;
+	@Autowired
+	private BlogAgreeWithMapper blogAgreeWithMapper;
 	@Override
 	public void insertBlog(BlogMapperPojo b) {
 		b.setUid("15902124763");//TODO
@@ -33,4 +37,15 @@ public class BlogServiceImpl implements BlogService {
         PageInfo<BlogMapperPojo> pageInfo = new PageInfo<BlogMapperPojo>(blogList);
         return pageInfo;
 	}
+
+    @Override
+    public int agreeWith(Long blogId) {
+	    //获取当前登入人 TODO
+        String uid = "pinglunId123";
+        BlogAgreeWithPojo bap = new BlogAgreeWithPojo();
+        bap.setBlogId(blogId);
+        bap.setUid(uid);
+        int i = this.blogAgreeWithMapper.insert(bap);
+        return i;
+    }
 }

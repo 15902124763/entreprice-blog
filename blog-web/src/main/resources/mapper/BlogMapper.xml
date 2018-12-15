@@ -14,6 +14,6 @@ INSERT INTO t_blog(uid,title,content,create_date,update_date)
 VALUES(#{blogMapperPojo.uid},#{blogMapperPojo.title},#{blogMapperPojo.content},#{blogMapperPojo.createDate},#{blogMapperPojo.updateDate})
 </insert>
 <select id="selectBlogList" resultMap="tBlogResultMap">
-SELECT b.uid,b.title,b.content FROM t_blog b ORDER BY create_date
+SELECT b.id,b.uid,b.title,b.content FROM t_blog b ORDER BY create_date
 </select>
 </mapper>

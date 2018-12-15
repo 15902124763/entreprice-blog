@@ -89,10 +89,10 @@ function getDataDefault(){
                         +"</div>"
                         +"</div>"
                         +"<div>"
-                        +"<button class='blog-agree'>"
+                        +"<button class='blog-agree' onclick='agreeWith("+val.id+")'>"
                         +"赞同"
                         +"</button>"
-                        +"<button class='blog-agree'>"
+                        +"<button class='blog-agree' onclick='commentPoint("+val.id+")'>"
                         +"评论"
                         +"</button>"
                         +"</div>";
@@ -129,4 +129,20 @@ function homePage() {
 	pageSize = 10;
 	getDataDefault();
 }
+//点赞
+function agreeWith(obj) {
+	var data = {'blogId':obj};
+    $.ajax({
+        type:"POST",
+        url:host + "blog/agreeWith.html",
+        data:JSON.stringify(data),
+        dataType:"json",
+        contentType:"application/json;charset=utf-8",
+        success:function(data){
 
+        },
+        error:function(data){
+
+        }
+    });
+}

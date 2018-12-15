@@ -15,6 +15,8 @@ import com.yarm.blog.pojo.web.Blog;
 import com.yarm.blog.pojo.web.Page;
 import com.yarm.blog.service.BlogService;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("blog")
 public class BlogController {
@@ -58,6 +60,22 @@ public class BlogController {
 		PageInfo<BlogMapperPojo> blogList = this.blogService.
 				blogList(p.getPageNum(), p.getPageSize());
 		ar.setResult(blogList);
+		return ar;
+	}
+
+	@RequestMapping(value="agreeWith.html", method=RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult<String>  agreeWith(@RequestBody Map<String, String> map){
+		AjaxResult<String> ar = new AjaxResult<String>();
+		String blogId = map.get("blogId");
+		long l = Long.parseLong(blogId);
+		int i = this.blogService.agreeWith(l);
+		if(i==1){
+			ar.setResult("成功点赞");
+			return ar;
+		}
+		ar.setSuccess(false);
+		ar.setErrorStr("点赞出错");
 		return ar;
 	}
 }
