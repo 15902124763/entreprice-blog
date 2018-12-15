@@ -67,8 +67,8 @@ function submitBlog(){
 }
 
 //获取分页默认数据
-var pageSize=10;
-var pageNum=1;
+var pageSize=10; //注意这是全局变量
+var pageNum=1; //注意这是全局变量
 function getDataDefault(){
     $.ajax({
         type:'get',
@@ -122,3 +122,11 @@ $(function(){
 $(function () {
 	getDataDefault();
 });
+
+//首页
+function homePage() {
+	pageNum = 1;
+	pageSize = 10;
+	getDataDefault();
+}
+
