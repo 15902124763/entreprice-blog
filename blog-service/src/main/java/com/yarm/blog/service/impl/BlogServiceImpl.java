@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.yarm.blog.dao.mapper.BlogAgreeWithMapper;
-import com.yarm.blog.pojo.mapper.BlogAgreeWithPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yarm.blog.dao.mapper.BlogMapper;
 import com.yarm.blog.pojo.mapper.BlogMapperPojo;
+import com.yarm.blog.pojo.mapper.BlogAgreeWithPojo;
 import com.yarm.blog.service.BlogService;
 @Service
 public class BlogServiceImpl implements BlogService {

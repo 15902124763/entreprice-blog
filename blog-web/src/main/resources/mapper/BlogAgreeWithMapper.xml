@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yarm.blog.dao.mapper.BlogAgreeWithMapper">
 
-    <resultMap type="com.yarm.blog.pojo.mapper.BlogAgreeWithPojo" id="tBlogAgreeWithResultMap">
+    <resultMap type="com.yarm.blog.pojo.web.BlogAgreeWithPojo" id="tBlogAgreeWithResultMap">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="blogId" jdbcType="INTEGER" property="blogId" />
         <result column="uid" jdbcType="VARCHAR" property="uid" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.yarm.blog.pojo.mapper.BlogAgreeWithPojo">
+    <insert id="insert" parameterType="com.yarm.blog.pojo.web.BlogAgreeWithPojo">
         INSERT INTO t_blog_agree_with(blog_id, uid, create_date)
          VALUES
         (#{bap.blogId},#{bap.uid}, SYSDATE())
