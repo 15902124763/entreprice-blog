@@ -98,15 +98,17 @@ function getDataDefault(){
                         +"</div>"
                         +"<div>"
                         +"<button class='blog-agree' onclick='agreeWith("+val.id+")'>"
-                        +"赞同&nbsp;" + val.agreeCount
+                        +"点赞&nbsp;" + val.agreeCount
                         +"</button>"
-                        +"<button class='blog-agree' onclick='commentPoint("+val.id+")'>"
+                        +"<button class='blog-agree blog-click' value='"+val.id+"'>"
                         +"评论"
                         +"</button>"
+                        + "<div style='display:none'>哈哈</div>"
                         +"</div>";
                 });
                 $("#contentId").append(html);
                 pageNum+=1;
+                commentBlog();//添加点击
             }
         }
     });
@@ -156,5 +158,14 @@ function agreeWith(obj) {
         error:function(data){
 
         }
+    });
+}
+
+//评论
+function commentBlog() {
+    $(".blog-click").click(function(){
+        var obj = $(this);
+        var blogId = obj.val();
+        obj.next('div').show();
     });
 }
