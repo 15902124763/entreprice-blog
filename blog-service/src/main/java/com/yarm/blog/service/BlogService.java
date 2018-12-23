@@ -2,6 +2,7 @@ package com.yarm.blog.service;
 
 import com.github.pagehelper.PageInfo;
 import com.yarm.blog.pojo.mapper.BlogMapperPojo;
+import com.yarm.blog.pojo.web.CommentWeb;
 
 public interface BlogService {
 
@@ -15,4 +16,11 @@ public interface BlogService {
 	 * @return
 	 */
     int agreeWith(Long blogId);
+
+	/**
+	 * 评论
+	 * @param cw
+	 * @return
+	 */
+	String commment(CommentWeb cw);
 }

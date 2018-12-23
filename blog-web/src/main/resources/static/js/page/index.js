@@ -84,6 +84,8 @@ function getDataDefault(){
         cache:false,
         dataType:'json',
         success:function(data){
+            var sb='<div><textarea id="blogCommentId" class="blog-Comment" placeholder="请输入正文（最多 100 个字）"></textarea></div>';
+            var commment = '<div id="CommentContentId"></div>';
             if(data.success){
                 var html = "";
                 var list = data.result.list;
@@ -103,11 +105,15 @@ function getDataDefault(){
                         +"<button class='blog-agree blog-click' value='"+val.id+"'>"
                         +"评论"
                         +"</button>"
-                        + "<div style='display:none'>哈哈</div>"
+                        + "<div style='display:none'>"
+						+ sb
+						+ "<div><button class='btn blog-comment-button' value='"+val.id+"'>发布</button></div>"
+						+"</div>"
                         +"</div>";
                 });
                 $("#contentId").append(html);
                 pageNum+=1;
+                getCommentBlog();//添加点击
                 commentBlog();//添加点击
             }
         }
@@ -161,11 +167,43 @@ function agreeWith(obj) {
     });
 }
 
-//评论
-function commentBlog() {
+//获取评论
+function getCommentBlog() {
     $(".blog-click").click(function(){
         var obj = $(this);
         var blogId = obj.val();
         obj.next('div').show();
+        $.ajax({
+            type:'get',
+            url:host + "blog/getComment.html?blogId="+blogId,
+            cache:false,
+            dataType:'json',
+            success:function(data){
+            }
+        });
+    });
+}
+
+//评论
+function commentBlog() {
+    $(".blog-comment-button").click(function(){
+        var obj = $(this);
+        var objCommment = obj.parent().prev("div").children("textarea");
+        var comment = objCommment.val();
+        var blogId = obj.val();
+        var data = {'blogId':blogId,"comment":comment};
+        alert(obj.val());
+        $.ajax({
+            type:"POST",
+            url:host + "blog/comment.html",
+            data:JSON.stringify(data),
+            dataType:"json",
+            contentType:"application/json;charset=utf-8",
+            success:function(data){
+            },
+            error:function(data){
+
+            }
+        });
     });
 }

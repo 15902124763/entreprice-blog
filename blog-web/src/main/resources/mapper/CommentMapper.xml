@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yarm.blog.dao.mapper.CommentMapper">
+
+    <insert id="insert" parameterType="com.yarm.blog.pojo.mapper.CommentMapperPojo">
+    INSERT INTO t_comment(
+	blog_id
+	,uid
+	,comment
+	,create_date
+	,update_date
+) VALUES(
+	 #{commentMapperPojo.blogId}
+    ,#{commentMapperPojo.uid}
+	,#{commentMapperPojo.comment}
+	,SYSDATE()
+	,SYSDATE()
+)
+    </insert>
+</mapper>

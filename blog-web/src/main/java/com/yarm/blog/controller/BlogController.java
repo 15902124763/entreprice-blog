@@ -1,12 +1,10 @@
 package com.yarm.blog.controller;
 
+import com.yarm.blog.pojo.web.CommentWeb;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
 import com.yarm.blog.pojo.mapper.BlogMapperPojo;
@@ -78,4 +76,12 @@ public class BlogController {
 		ar.setErrorStr("点赞出错");
 		return ar;
 	}
+
+	@RequestMapping(value="comment.html", method=RequestMethod.POST)
+	@ResponseBody
+	public AjaxResult<String>  comment(@RequestBody CommentWeb cw){
+		String cout = blogService.commment(cw);
+		return  null;
+	}
+
 }

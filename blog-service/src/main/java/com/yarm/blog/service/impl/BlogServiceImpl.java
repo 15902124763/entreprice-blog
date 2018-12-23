@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.yarm.blog.dao.mapper.BlogAgreeWithMapper;
+import com.yarm.blog.dao.mapper.CommentMapper;
+import com.yarm.blog.pojo.mapper.CommentMapperPojo;
+import com.yarm.blog.pojo.web.CommentWeb;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,8 @@ public class BlogServiceImpl implements BlogService {
 	private BlogMapper blogMapper;
 	@Autowired
 	private BlogAgreeWithMapper blogAgreeWithMapper;
+	@Autowired
+	private CommentMapper commentMapper;
 	@Override
 	public void insertBlog(BlogMapperPojo b) {
 		b.setUid("15902124763");//TODO
@@ -53,5 +59,25 @@ public class BlogServiceImpl implements BlogService {
         bmp.setAgreeCount(blogMapperPojo.getAgreeCount() + 1);
         int j = this.blogMapper.update(bmp);
         return i;
+    }
+
+    @Override
+    public String commment(CommentWeb cw) {
+	    //获取当前登入人 TODO
+        if(cw == null || StringUtils.isBlank(cw.getComment())){
+            return "评论为空";
+        }
+        if(cw.getBlogId() == null){
+            return "博客id为空";
+        }
+        String uid="pinglu1234";
+
+        CommentMapperPojo cmp = new CommentMapperPojo();
+        cmp.setBlogId(cw.getBlogId());
+        cmp.setUid(uid);
+        cmp.setComment(cw.getComment());
+        int count = this.commentMapper.insert(cmp);
+
+        return null;
     }
 }
