@@ -13,9 +13,14 @@
 	      <artifactId>blog-dao</artifactId>
 	      <version>1.0.0</version>
 	</dependency>
+	  <dependency>
+	      <groupId>com.yarm</groupId>
+	      <artifactId>blog-dao</artifactId>
+	      <version>1.0.0</version>
+	</dependency>
 	<dependency>
 	      <groupId>com.yarm</groupId>
-	      <artifactId>blog-pojo</artifactId>
+	      <artifactId>blog-es</artifactId>
 	      <version>1.0.0</version>
 	</dependency>
 <!-- 	<dependency>

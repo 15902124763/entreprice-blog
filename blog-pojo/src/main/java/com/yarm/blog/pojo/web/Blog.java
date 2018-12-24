@@ -1,18 +1,23 @@
 package com.yarm.blog.pojo.web;
 
-import java.util.Date;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
+import java.util.Date;
+@Document(indexName = "blog",type = "t_blog")
 public class Blog {
+	@Id
 	private long id;
-	
+	@Field
 	private String uid;
-	
+	@Field
 	private String title;
-	
+	@Field
 	private String content;
-	
+	@Field
 	private Date createDate;
-	
+	@Field
 	private Date updateDate;
 
 	public long getId() {
@@ -62,4 +67,5 @@ public class Blog {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
+
 }

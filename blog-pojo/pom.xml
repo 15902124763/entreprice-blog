@@ -6,4 +6,11 @@
     <version>1.0.0</version>
   </parent>
   <artifactId>blog-pojo</artifactId>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+    </dependency>
+  </dependencies>
 </project>

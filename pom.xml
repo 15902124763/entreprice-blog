@@ -21,6 +21,7 @@
   	<module>blog-pojo</module>
   	<module>blog-dao</module>
   	<module>blog-login</module>
+      <module>blog-es</module>
   </modules>
   
   <dependencies>
