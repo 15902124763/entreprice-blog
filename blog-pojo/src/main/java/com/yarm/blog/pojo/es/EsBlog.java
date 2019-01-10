@@ -1,7 +1,9 @@
 package com.yarm.blog.pojo.es;
 
-import java.util.Date;
+import org.springframework.data.elasticsearch.annotations.Document;
 
+import java.util.Date;
+@Document(indexName="blog",type="doc",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
 public class EsBlog {
     private long id;
 
@@ -14,4 +16,52 @@ public class EsBlog {
     private Date createDate;
 
     private Date updateDate;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 }
