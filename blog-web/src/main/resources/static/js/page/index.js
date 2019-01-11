@@ -119,6 +119,50 @@ function getDataDefault(){
         }
     });
 }
+function search(){
+    var searchId = $("#searchId").val();
+    $.ajax({
+        type:'get',
+        url:host + "/search/q?q="+searchId,
+        cache:false,
+        dataType:'json',
+        success:function(data){
+            var sb='<div><textarea id="blogCommentId" class="blog-Comment" placeholder="请输入正文（最多 100 个字）"></textarea></div>';
+            var commment = '<div id="CommentContentId"></div>';
+            if(data.success){
+                var html = "";
+                var list = data.content.list;
+                $.each(list,function(key,val){
+                    console.log(key,val,this);
+                    html +="<div><h2><a class='blog-page-title'>"
+                        +val.title
+                        +"</a></h2>"
+                        +"<div class='blog-page-content'>"
+                        +val.content
+                        +"</div>"
+                        +"</div>"
+                        +"<div>"
+                        +"<button class='blog-agree' onclick='agreeWith("+val.id+")'>"
+                        +"点赞&nbsp;" + val.agreeCount
+                        +"</button>"
+                        +"<button class='blog-agree blog-click' value='"+val.id+"'>"
+                        +"评论"
+                        +"</button>"
+                        + "<div style='display:none'>"
+                        + sb
+                        + "<div><button class='btn blog-comment-button' value='"+val.id+"'>发布</button></div>"
+                        +"</div>"
+                        +"</div>";
+                });
+                $("#contentId").remove();
+                $("#contentId").append(html);
+                pageNum+=1;
+                getCommentBlog();//添加点击
+                commentBlog();//添加点击
+            }
+        }
+    });
+}
 
 $(function(){
 	$("#main").scroll(function(){

@@ -26,18 +26,15 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 public class SearchController {
 
     @Autowired
-    private ElasticsearchTemplate elasticsearchTemplate;
-
-    @Autowired
     private BlogSearchService blogSearchService;
 
     @GetMapping(value = "search/q")
     @ResponseBody
     public Map<String,Object> add(String q,Pageable pageable){
         //使用queryStringQuery完成单字符串查询
-        Page<EsBlog> all = blogSearchService.findAll(pageable);
+        Page<EsBlog> search = blogSearchService.search(q, q, pageable);
         Map<String, Object> map = new HashMap<>();
-        map.put("data",all);
+        map.put("data",search);
         return map;
     }
 }

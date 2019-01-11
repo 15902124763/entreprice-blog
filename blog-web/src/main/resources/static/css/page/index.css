@@ -70,10 +70,16 @@ header {
 	margin-left: 13%;
 }
 .Ul-write{
-	margin-left: 68%;
+	margin-left: 20%;
+}
+.Ul-search{
+    margin-left: 5%;
 }
 .Ul-write-item{
 	display: inline-block;
+}
+.Ul-search-item{
+    display: inline-block;
 }
 .Input-wrapper.Input-wrapper--multiline {
     height: inherit;
@@ -138,6 +144,16 @@ header {
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.blog-search-input{
+    width: 200px;
+    font-size: 20px;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
